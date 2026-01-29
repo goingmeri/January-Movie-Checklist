@@ -2,6 +2,14 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const progressBar = document.getElementById('progress-bar');
 const counterText = document.getElementById('counter-text');
 
+// Function to clear all boxes on page load
+window.onload = function() {
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    updateProgress(); // This resets the bar and text to 0/60
+};
+
 function updateProgress() {
     const totalItems = checkboxes.length;
     const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked').length;
