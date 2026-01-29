@@ -1,4 +1,3 @@
-/* 1. GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
@@ -7,11 +6,10 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f9d6e5; /* pale pink */
+    background-color: #f9d6e5;
     padding: 40px 20px;
 }
 
-/* 2. LAYOUT CONTAINERS */
 .container {
     max-width: 1200px;
     margin: auto;
@@ -25,14 +23,10 @@ body {
     color: #4a2a3c;
 }
 
-/* 3. PROGRESS BAR SECTION (Centered Rectangle) */
 .progress-wrapper {
     width: 100%;
-    max-width: 1500px;
-    /* The first number (40px) is the space ABOVE the bar */
-    /* The last number (60px) is the space BELOW the bar */
-    margin: 40px auto 60px auto; 
-    
+    max-width: 1200px;
+    margin: 40px auto 0;
     background-color: #ffffff;
     padding: 25px;
     border-radius: 20px;
@@ -47,10 +41,11 @@ body {
     font-weight: 600;
     font-size: 18px;
     color: #4a2a3c;
+    margin: 0;
 }
 
 .progress-container {
-    width: 100%;           /* Fills the white rectangle */
+    width: 100%;
     height: 30px;
     background-color: #eee;
     border-radius: 10px;
@@ -60,17 +55,18 @@ body {
 
 .progress-bar {
     height: 100%;
-    width: 0%;             /* Controlled by JS */
-    background-color: #3cc367; /* Green progress */
-    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy animation */
+    width: 0%;
+    background-color: #3cc367;
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* 4. MOVIE GRID SYSTEM */
 .movie-list {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .movie-item {
@@ -79,7 +75,6 @@ body {
     gap: 18px;
     background-color: #ffffff;
     padding: 24px 28px;
-    height: 95px;
     border-radius: 18px;
     font-size: 16px;
     font-weight: 500;
@@ -90,39 +85,66 @@ body {
 
 .movie-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 5. CHECKBOX & CHECKED STATES */
-.movie-item input {
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
+.movie-item label {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
     cursor: pointer;
-    accent-color: #3cc367; /* Makes the checkbox itself green when checked */
+}
+
+.movie-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 8px;
+    background-color: #f9d6e5;
+    border: 2px solid #d39ab2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.movie-item input[type="checkbox"]:checked {
+    background-color: #3cc367;
+    border-color: #3cc367;
+}
+
+.movie-item input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+}
+
+.movie-item input[type="checkbox"]:hover:not(:checked) {
+    background-color: #f3bfd5;
 }
 
 .movie-item:has(input:checked) {
-    background-color: #c8f7c5; /* Light green background */
+    background-color: #c8f7c5;
     color: #1b5e20;
     font-weight: 600;
     border: 1px solid #a5d6a7;
 }
 
-.movie-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.movie-item:has(input:checked) label {
+    color: #1b5e20;
 }
 
-/* 6. RESPONSIVENESS */
 @media (max-width: 900px) {
     .movie-list {
         grid-template-columns: repeat(2, 1fr);
-    }
-    .progress-wrapper {
-        width: 80%;
     }
 }
 
@@ -130,10 +152,13 @@ body {
     .movie-list {
         grid-template-columns: 1fr;
     }
-    .progress-wrapper {
-        width: 100%;
-    }
+
     .title {
         font-size: 28px;
+    }
+
+    .movie-item {
+        padding: 20px 24px;
+        font-size: 15px;
     }
 }
