@@ -13,7 +13,7 @@
     <h1 class="title">Monthly Movie Checklist</h1>
 
     <ul class="movie-list">
-        <li class="movie-item"><label><input type="checkbox"> 🥪 When Harry Met Sally</label></li>
+          <li class="movie-item"><label><input type="checkbox"> 🥪 When Harry Met Sally</label></li>
         <li class="movie-item"><label><input type="checkbox"> 👠 Pretty Woman</label></li>
         <li class="movie-item"><label><input type="checkbox"> 🖼️ Notting Hill</label></li>
         <li class="movie-item"><label><input type="checkbox"> 🎄 Love Actually</label></li>
@@ -80,15 +80,28 @@
         <li class="movie-item"><label><input type="checkbox"> 🍎 Enchanted</label></li>
     </ul>
 
-    <div class="progress-wrapper">
-        <p id="counter-text">You've completed 0/60 items</p>
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div> 
+<div class="progress-wrapper">
+    <p id="counter-text">You've completed 0/60 items</p>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div> 
+    </div>
+</div>
+
+<div id="overlay" class="overlay">
+    <div class="popup">
+        <h2>🎉 Congratulations!</h2>
+        <p>You're a certified RomCom fan!</p>
+        <div class="popup-buttons">
+            <button id="back-btn" class="btn-back">Back</button>
+            <button id="restart-btn" class="btn-restart">Restart</button>
         </div>
     </div>
+</div>
 
+</section>
 </main>
     
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </body>
 </html>

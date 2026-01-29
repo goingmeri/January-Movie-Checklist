@@ -2,29 +2,40 @@ const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const progressBar = document.getElementById('progress-bar');
 const counterText = document.getElementById('counter-text');
 
-// Function to clear all boxes on page load
-window.onload = function() {
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    updateProgress(); // This resets the bar and text to 0/60
-};
+// New constants for the popup
+const overlay = document.getElementById('overlay');
+const backBtn = document.getElementById('back-btn');
+const restartBtn = document.getElementById('restart-btn');
 
 function updateProgress() {
     const totalItems = checkboxes.length;
     const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked').length;
     
-    // Calculate percentage for the bar width
+    // Calculate percentage
     const percentage = (checkedItems / totalItems) * 100;
-
-    // Update the bar width
     progressBar.style.width = percentage + "%";
-
-    // Update the text
     counterText.innerText = `You've completed ${checkedItems}/${totalItems} items`;
+
+    // Trigger Popup when 100% complete
+    if (checkedItems === totalItems && totalItems > 0) {
+        // We use a tiny delay (500ms) so the bar finishes its animation first
+        setTimeout(() => {
+            overlay.style.display = 'flex';
+        }, 500);
+    }
 }
 
-// Add the listener to every checkbox
+// 1. BACK BUTTON: Just hides the popup
+backBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+});
+
+// 2. RESTART BUTTON: Clears everything and reloads page
+restartBtn.addEventListener('click', () => {
+    location.reload(); 
+});
+
+// Listener for checkboxes
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', updateProgress);
 });
