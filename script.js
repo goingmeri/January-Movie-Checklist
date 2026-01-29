@@ -39,3 +39,26 @@ restartBtn.addEventListener('click', () => {
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', updateProgress);
 });
+
+// New constants for Love Mail
+// Love Mail Elements
+const loveBtn = document.getElementById('lovemail-btn');
+const loveOverlay = document.getElementById('lovemail-overlay');
+const loveClose = document.getElementById('close-lovemail');
+
+// Open the letter
+loveBtn.addEventListener('click', () => {
+    loveOverlay.style.display = 'flex';
+});
+
+// Close the letter
+loveClose.addEventListener('click', () => {
+    loveOverlay.style.display = 'none';
+});
+
+// Close when clicking on the dark background
+window.addEventListener('click', (e) => {
+    if (e.target === loveOverlay) {
+        loveOverlay.style.display = 'none';
+    }
+});
